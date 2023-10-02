@@ -3,6 +3,8 @@
 
 #include "AuraCharacter.h"
 
+#include "AbilitySystemComponent.h"
+#include "Aura/Player/AuraPlayerState.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -29,4 +31,25 @@ AAuraCharacter::AAuraCharacter()
 
 
 	
+}
+
+void AAuraCharacter::InitAbilityActorInfo()
+{
+	AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+	check(AuraPlayerState);
+	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState, this);
+	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
+	AttributeSet = AuraPlayerState->GetAttributeSet();
+}
+
+void AAuraCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+	InitAbilityActorInfo();
+}
+
+void AAuraCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+	InitAbilityActorInfo();
 }
