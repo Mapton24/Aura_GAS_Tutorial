@@ -41,6 +41,8 @@ static void InitializeNativeGameplayTags();
 	FGameplayTag InputTag_3;
 	FGameplayTag InputTag_4;
 
+	FGameplayTag Damage;
+
 protected:
 	
 private:
