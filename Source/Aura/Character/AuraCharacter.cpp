@@ -30,6 +30,8 @@ AAuraCharacter::AAuraCharacter()
 
 	MainCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("MainCamera"));
 	MainCamera->SetupAttachment(CameraBoom);
+
+	CharacterClass = ECharacterClass::Elementalist;
 }
 
 void AAuraCharacter::InitAbilityActorInfo()
