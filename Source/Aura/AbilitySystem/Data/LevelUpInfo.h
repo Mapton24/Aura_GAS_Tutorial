@@ -30,5 +30,5 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TArray<FAuraLevelUpInfo> LevelUpInformation;
 
-	int32 FindLevelForExp(int32 XP);
+	int32 FindLevelForExp(int32 XP) const;
 };
