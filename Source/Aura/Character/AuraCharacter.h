@@ -26,9 +26,10 @@ class AURA_API AAuraCharacter : public AAuraCharacterBase, public IPlayerInterfa
 	
 	/** Player Interface */
 	virtual void AddToXP_Implementation(int32 InXP) override;
+	virtual void LevelUp_Implementation() override;
 	/** end Combat Interface */
 	/** Combat Interface */
-	virtual int32 GetPlayerLevel() override;
+	virtual int32 GetPlayerLevel_Implementation() override;
 	/** end Combat Interface */
 
 
