@@ -8,6 +8,7 @@
 #include "AuraCharacter.generated.h"
 
 
+class UNiagaraComponent;
 class USpringArmComponent;
 class UCameraComponent;
 class AAuraPlayerState;
@@ -19,6 +20,7 @@ class AURA_API AAuraCharacter : public AAuraCharacterBase, public IPlayerInterfa
 {
 	GENERATED_BODY()
 
+public:
 	AAuraCharacter();
 
 	virtual void PossessedBy(AController* NewController) override;
@@ -39,18 +41,24 @@ class AURA_API AAuraCharacter : public AAuraCharacterBase, public IPlayerInterfa
 	virtual int32 GetPlayerLevel_Implementation() override;
 	/** end Combat Interface */
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UNiagaraComponent> LevelUpNiagaraComponent;
+	
+
 
 private:
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCameraComponent> MainCamera;
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USpringArmComponent> CameraBoom;
+	
 	virtual void InitAbilityActorInfo() override;
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastLevelUpParticles() const;
+	
 
 
-protected:
-
-	UPROPERTY(VisibleAnywhere)
-	USpringArmComponent* CameraBoom;
-
-	UPROPERTY(VisibleAnywhere)
-	UCameraComponent* MainCamera;
 
 	// //This might not be a good idea to make a pointer out of it, can't const implementations if I want to use it
 	// UPROPERTY()
