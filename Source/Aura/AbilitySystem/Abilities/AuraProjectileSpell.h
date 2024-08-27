@@ -17,11 +17,6 @@ class AURA_API UAuraProjectileSpell : public UAuraDamageGameplayAbility
 {
 	GENERATED_BODY()
 
-	virtual FString GetDescription(int32 Level) override;
-	virtual FString GetNextLevelDescription(int32 Level) override;
-
-	UPROPERTY(EditDefaultsOnly)
-	int32 NumProjectiles = 5;
 
 
 protected:
