@@ -65,6 +65,8 @@ public:
 	static FGameplayTag GetDamageType(const FGameplayEffectContextHandle& EffectContextHandle);
 	UFUNCTION(BlueprintPure, Category ="AuraAbilitySystemLibrary|GameplayEffects")
 	static FVector GetDeathImpulse(const FGameplayEffectContextHandle& EffectContextHandle);
+	UFUNCTION(BlueprintPure, Category ="AuraAbilitySystemLibrary|GameplayEffects")
+	static FVector GetKnockbackForce(const FGameplayEffectContextHandle& EffectContextHandle);
 
 
 	UFUNCTION(BlueprintPure, Category ="AuraAbilitySystemLibrary|GameplayEffects")
@@ -93,6 +95,8 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category ="AuraAbilitySystemLibrary|GameplayEffects")
 	static void SetDeathImpulse(UPARAM(ref)FGameplayEffectContextHandle& EffectContextHandle, const FVector& InImpulse);
+	UFUNCTION(BlueprintCallable, Category ="AuraAbilitySystemLibrary|GameplayEffects")
+	static void SetKnockbackForce (UPARAM(ref)FGameplayEffectContextHandle& EffectContextHandle, const FVector& InKnockback);
 
 	
 
