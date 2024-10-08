@@ -93,6 +93,6 @@ public:
 	USkeletalMeshComponent* GetWeapon();
 
 	
-	virtual FOnASCRegistered GetOnAscRegisteredDelegate() = 0;
+	virtual FOnASCRegistered& GetOnAscRegisteredDelegate() = 0;
 	
 };
