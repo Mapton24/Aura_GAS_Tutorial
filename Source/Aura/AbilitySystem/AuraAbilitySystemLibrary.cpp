@@ -225,7 +225,7 @@ bool UAuraAbilitySystemLibrary::IsRadialDamage(const FGameplayEffectContextHandl
 {
 	if (const FAuraGameplayEffectContext* AuraEffectContext = static_cast<const FAuraGameplayEffectContext*>(EffectContextHandle.Get()))
 	{
-		return AuraEffectContext->IsCriticalHit();
+		return AuraEffectContext->IsRadialDamage();
 	}
 	return false;
 }
