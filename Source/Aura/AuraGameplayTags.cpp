@@ -254,6 +254,9 @@ FString("No Ability - like the nullptr for Ability Tags")
 	 FString("Summon Ability Tag")
 	);
 
+	/*
+	 * Offensive Spells
+	 */
 	GameplayTags.Abilities_Fire_FireBolt = UGameplayTagsManager::Get().AddNativeGameplayTag
 	(FName("Abilities.Fire.FireBolt"),
 	 FString("FireBolt Ability Tag")
@@ -393,6 +396,10 @@ FString("No Ability - like the nullptr for Ability Tags")
 	(FName("Player.Block.InputReleased"),
 	 FString("Block Input Released callback for input")
 	);
-	
 
+
+	GameplayTags.GameplayCue_FireBlast = UGameplayTagsManager::Get().AddNativeGameplayTag
+	(FName("GameplayCue.FireBlast"),
+	 FString("FireBlast GameplayCue Tag")
+	);
 }
