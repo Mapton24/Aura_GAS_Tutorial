@@ -4,9 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "MVVMViewModelBase.h"
+#include "Aura/Game/LoadScreenSaveGame.h"
 #include "MVVM_LoadSlot.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSetWidgetSwitcherIndex, int32, WidgetSwitcherInderx);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSetWidgetSwitcherIndex, int32, WidgetSwitcherIndex);
 
 /**
  * 
@@ -27,6 +28,9 @@ public:
 
 	UPROPERTY()
 	int32 SlotIndex = 0;
+
+	UPROPERTY()
+	TEnumAsByte<ESaveSlotStatus> SlotStatus;
 
 	/** Field Notifies */
 
