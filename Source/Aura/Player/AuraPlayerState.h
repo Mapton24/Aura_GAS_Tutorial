@@ -42,12 +42,15 @@ public:
 
 	void AddXP(int32 InXP);
 	void AddToLevel(int32 InLevel);
-
-	void SetXP(int32 InXP);
-	void SetLevel(int32 InLevel);
-
 	void AddToAttributePoints(int32 InPoints);
 	void AddToSpellPoints(int32 InPoints);
+	
+	void SetXP(int32 InXP);
+	void SetLevel(int32 InLevel);
+	void SetToAttributePoints(int32 InPoints);
+	void SetToSpellPoints(int32 InPoints);
+
+
 
 protected:
 	UPROPERTY(VisibleAnywhere)
