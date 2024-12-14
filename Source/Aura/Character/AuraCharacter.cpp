@@ -12,7 +12,6 @@
 #include "Aura/AbilitySystem/Data/AbilityInfo.h"
 #include "Aura/AbilitySystem/Data/LevelUpInfo.h"
 #include "Aura/AbilitySystem/Debuff/DebuffNiagaraComponent.h"
-#include "Aura/Game/AuraGameInstance.h"
 #include "Aura/Game/AuraGameModeBase.h"
 #include "Aura/Game/LoadScreenSaveGame.h"
 #include "Aura/Player/AuraPlayerController.h"
@@ -103,7 +102,11 @@ void AAuraCharacter::LoadProgress()
 		}
 		else
 		{
-			//TODO: Load in Abilities from disk
+			if (UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent))
+			{
+				AuraASC->AddCharacterAbilitiesFromSaveData(SaveData);
+			}
+			
 			if (AAuraPlayerState* AuraPlayerState = Cast<AAuraPlayerState>(GetPlayerState()))
 			{
 				AuraPlayerState->SetLevel(SaveData->PlayerLevel);
@@ -258,6 +261,7 @@ void AAuraCharacter::SaveProgress_Implementation(const FName& CheckpointTag)
 
 		UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent);
 		FForEachAbility SaveAbilityDelegate;
+		SaveData->SavedAbilities.Empty();
 		SaveAbilityDelegate.BindLambda([this, AuraASC, SaveData](const FGameplayAbilitySpec& AbilitySpec)
 		{
 			const FGameplayTag AbilityTag = AuraASC->GetAbilityTagFromSpec(AbilitySpec);
@@ -272,7 +276,7 @@ void AAuraCharacter::SaveProgress_Implementation(const FName& CheckpointTag)
 			SavedAbility.AbilityTag = AbilityTag;
 			SavedAbility.AbilityType = Info.AbilityTypeTag;
 
-			SaveData->SavedAbilities.Add(SavedAbility);
+			SaveData->SavedAbilities.AddUnique(SavedAbility);
 			
 		});
 		AuraASC->ForEachAbility(SaveAbilityDelegate);
